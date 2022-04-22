@@ -1,0 +1,97 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/matas3535/PoopLibrary/main/Library.lua"))()
+
+local Window = Library:New({Name = "SexHub | VERSION: 4 ",Size = Vector2.new(650,450), Accent = Color3.fromRGB(255,255,255)})
+function RenderSettingMechUILIBRARY()
+local Settings = Window:Page({Name = "Settings"})
+local Settings_Main = Settings:Section({Name = "Main", Side = "Left"})
+-- // Settings
+Settings_Main:ConfigBox({})
+Settings_Main:ButtonHolder({Buttons = {{"Load", function() end}, {"Save", function() end}}})
+Settings_Main:Label({Name = "This tab is in the works", Middle = true})
+Settings_Main:Button({Name = "Unload", Callback = function() MainSync.Connections:Disconnect() print("Removing Connections") print("Removing Drawings") MainSync.RemoveAllDrawings() print("Unloading")  Window:Unload() end})
+end
+-- \\ 
+function RenderAimbotMechUILIBRARY()
+local Aimbot = Window:Page({Name = "Aimbot"})
+local Aimbot_Main = Aimbot:Section({Name = "Main", Side = "Left"})
+local Aimbot_Extra = Aimbot:Section({Name = "Extra", Side = "Right"})
+local Aimbot_SilentVar = Aimbot:Section({Name = "Silent Bot", Side = "Left"})
+local Aimbot_RAGE = Aimbot:Section({Name = "RAGE", Side = "Right"})
+--AB_MAIN
+Aimbot_Main:Toggle({Name = "Enabled", Default = false, Pointer = "AimbotMain_Enabled"})
+:Keybind({Default = Enum.KeyCode.E, KeybindName = "Aimbot", Mode = "Hold", Pointer = "AimbotMain_Bind"})
+Aimbot_Main:Slider({Name = "Fov", Minimum = 1, Maximum = 750, Default = 150, Decimals = 0.1, Pointer = "AimbotMain_FOV"})
+Aimbot_Main:Slider({Name = "Smoothness", Minimum = 1, Maximum = 30, Default = 1.5, Decimals = 0.1, Pointer = "AimbotMain_Smoothness"})
+Aimbot_Main:Toggle({Name = "Snap", Default = false, Pointer = "AimbotMain_SNAP"})
+Aimbot_Main:Toggle({Name = "Visualize Target", Default = false, Pointer = "AimbotMain_STARGERGET"})
+Aimbot_Main:Multibox({Name = "Hit-Part", Minimum = 1, Options = {"Head", "HumanoidRootPart"}, Default = {"Head", "Torso"}, Pointer = "AimbotMain_Hitpart"})
+--AB_MAIN
+--AB_RAGE
+Aimbot_RAGE:Label({Name = "Wallbang up to 3 walls", Middle = true})
+Aimbot_RAGE:Toggle({Name = "Wallbang", Default = false, Pointer = "WallbangEnabled"})
+Aimbot_RAGE:Label({Name = "The fetures below are still in the works", Middle = true})
+Aimbot_RAGE:Toggle({Name = "Auto Fire", Default = false, Pointer = "AutofireGunbtw"})
+Aimbot_RAGE:Toggle({Name = "Set Target", Default = false, Pointer = "SettingTargerlol"})
+
+--AB_Silent
+Aimbot_SilentVar:Toggle({Name = "Enabled", Default = false, Pointer = "AimbotSS_Enabled"})
+:Keybind({Default = Enum.KeyCode.E, KeybindName = "Aimbot", Mode = "Hold", Pointer = "AimbotSS_Bind"})
+Aimbot_SilentVar:Slider({Name = "Fov", Minimum = 1, Maximum = 750, Default = 150, Decimals = 0.1, Pointer = "AimbotSILENT_FOV"})
+Aimbot_SilentVar:Colorpicker({Name = "Fov Color" , Info = "Color", Alpha = 0.75, Default = Color3.fromRGB(200, 200, 200), pointer = "FovColor1sS"})
+Aimbot_SilentVar:Toggle({Name = "Visualize Target", Default = false, Pointer = "AimbotSS_STARGERGET"})
+Aimbot_SilentVar:Toggle({Name = "SET Target", Default = false, Pointer = "AimbotSS_STARGERGET"})
+Aimbot_SilentVar:Label({Name = "Redirection is broken. \n FindPartOnRayWithWhitelist is undetected / working.", Middle = true})
+Aimbot_SilentVar:Dropdown({Name = "Method", Options = {"Redirection", "FindPartOnRayWithWhitelist"}, Pointer = "AimbotSS_Mode"})
+Aimbot_SilentVar:Dropdown({Name = "Hit-Part", Options = {"Head", "HumanoidRootPart"}, Pointer = "AimbotSS_Hitpart"})
+end
+
+--//
+function RenderEspMechUILIBRARY()
+    local Visuals = Window:Page({Name = "Visuals"})
+    local Visuals_Others, Visuals_Self = Visuals:MultiSection({Sections = {"Others" , "Self"}, Side = "Left", Size = 200})
+    VisualsEnemies_BoxEsp = Visuals_Others:Toggle({Name = "Box", Default = false, Pointer = "VisualsEnemies_BoxEsp"})
+    VisualsEnemies_BoxEsp:Colorpicker({Info = "ESP-Box Color", Alpha = 0.75, Default = Color3.fromRGB(200, 200, 200), pointer = "VisualsEnemies_BoxColor"})
+    VisualsEnemies_NameEsp = Visuals_Others:Toggle({Name = "Name", Default = false, Pointer = "VisualsEnemies_NameEsp"})
+    VisualsEnemies_NameEsp:Colorpicker({Info = "ESP-Box Color", Alpha = 0.75, Default = Color3.fromRGB(200, 200, 200), pointer = "VisualsEnemies_NameColor"})
+    VisualsEnemies_TracerEsp = Visuals_Others:Toggle({Name = "Tracer", Default = false, Pointer = "VisualsEnemies_TracerEsp"})
+    VisualsEnemies_TracerEsp :Colorpicker({Info = "ESP-Box Color", Alpha = 0.75, Default = Color3.fromRGB(200, 200, 200), pointer = "VisualsEnemies_TracerColor"})
+    VisualsEnemies_HealthEsp = Visuals_Others:Toggle({Name = "Health", Default = false, Pointer = "VisualsEnemies_HPEsp"})
+    VisualsEnemies_HealthEsp:Colorpicker({Info = "ESP-Box Color", Alpha = 0.75, Default = Color3.fromRGB(200, 200, 200), pointer = "VisualsEnemies_HealthColor"})
+    VisualsEnemies_DistEsp = Visuals_Others:Toggle({Name = "Distance", Default = false, Pointer = "VisualsEnemies_DistEsp"})
+    VisualsEnemies_DistEsp:Colorpicker({Info = "ESP-Box Color", Alpha = 0.75, Default = Color3.fromRGB(200, 200, 200), pointer = "VisualsEnemies_DistanceColor"})
+    VisualsEnemies_ToolEsp = Visuals_Others:Toggle({Name = "Show Tool", Default = false, Pointer = "VisualsEnemies_ToolEsp"})
+    VisualsEnemies_ToolEsp:Colorpicker({Info = "ESP-Box Color", Alpha = 0.75, Default = Color3.fromRGB(200, 200, 200), pointer = "VisualsEnemies_ToolColor"})
+    VisualsEnemies_MoneyEsp = Visuals_Others:Toggle({Name = "Show Money", Default = false, Pointer = "VisualsEnemies_MoneyEsp"})
+    VisualsEnemies_MoneyEsp:Colorpicker({Info = "ESP-Box Color", Alpha = 0.75, Default = Color3.fromRGB(200, 200, 200), pointer = "VisualsEnemies_MoneyColor"})
+    VisualsEnemies_WantedEsp = Visuals_Others:Toggle({Name = "Show Wanted", Default = false, Pointer = "VisualsEnemies_WantedEsp"})
+    VisualsEnemies_WantedEsp:Colorpicker({Info = "ESP-Box Color", Alpha = 0.75, Default = Color3.fromRGB(200, 200, 200), pointer = "VisualsEnemies_WantedColor"})
+    VisualsEnemies_HealthBasedColors = Visuals_Others:Toggle({Name = "HP Based colors", Default = false, Pointer = "VISUALSHPBASED"})
+end
+--\\
+function RenderMiscMechUILIBRARY()
+    local Misc = Window:Page({Name = "Misc"})
+    local Misc_Main = Misc:Section({Name = "Character", Side = "Left"})
+    local Checks_Misc = Misc:Section({Name = "Checks", Side = "Right"})
+    local Other_Misc = Misc:Section({Name = "Teleports", Side = "Left"})
+    
+    Misc_Main:Toggle({Name = "Inf Stam", Default = false, Pointer = "Misc_MainSTam" , Callback = function() OnLocalCharacterAdded(game.Players.LocalPlayer.Character) end})
+    Misc_Main:Toggle({Name = "No recoil", Default = false, Pointer = "Misc_MainNoRc"})
+    Misc_Main:Toggle({Name = "No Fall damage", Default = false, Pointer = "Misc_MFD"})
+    Misc_Main:Toggle({Name = "Jump Power", Default = false, Pointer = "Misc_MainJP", Callback = function() LocalPlayer.Character.Humanoid.JumpPower = OriginalJumpPower end})
+    Misc_Main:Slider({Name = "Power", Minimum = 1, Maximum = 75, Default = 40, Decimals = 0.1, Pointer = "JPPOWERSLIDER"})
+    Misc_Main:Toggle({Name = "Walk speed", Default = false, Pointer = "Misc_MainWS", Callback = function() LocalPlayer.Character.Humanoid.WalkSpeed = OriginalWalkspeed end})
+    Misc_Main:Slider({Name = "Speed", Minimum = 1, Maximum = 30, Default = 15, Decimals = 0.1, Pointer = "WSSPEEDSLIDER"})
+    
+    Checks_Misc:Toggle({Name = "Aimbot non friends", Default = false, Pointer = "Checks_MiscFriends"})
+    Checks_Misc:Toggle({Name = "Check Aimbot visibllity", Default = false, Pointer = "Checks_MiscVisible"})
+    
+    
+end
+--//
+RenderAimbotMechUILIBRARY()
+RenderEspMechUILIBRARY()
+RenderMiscMechUILIBRARY()
+RenderSettingMechUILIBRARY()
+
+-- // Initialisation
+Window:Initialize()
